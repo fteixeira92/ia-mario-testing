@@ -11,7 +11,7 @@ public class Command {
     public Command() {
 //        Integer input = Utils.getRandomNumberInRange(0, 11);
         Integer input = getNonBRandomInput();
-        int repetition = Utils.getRandomNumberInRange(3, 30);
+        int repetition = Utils.getRandomNumberInRange(3, 20);
         inputs = Collections.nCopies(repetition, input);
     }
 
@@ -35,8 +35,8 @@ public class Command {
     }
 
     private Integer getNonBRandomInput() {
-        Integer[] inputs = {1, 2, 5, 6, 7, 10, 11};
-        return inputs[Utils.getRandomNumberInRange(0, 6)];
+        Integer[] inputs = {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 5, 5, 5, 5, 6, 6, 7, 10, 10, 11};
+        return inputs[Utils.getRandomNumberInRange(0, inputs.length)];
     }
 
     @Override

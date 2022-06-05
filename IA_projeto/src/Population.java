@@ -3,9 +3,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Population {
-    private final int INDIVIDUAL_MIN_SIZE = 500;
-    private final int INDIVIDUAL_MAX_SIZE = 1500;
-    private final int INDIVIDUAL_SIZE = 175;
+    private final int INDIVIDUAL_SIZE = 200;
 
     private List<Individual> individuals;
     private int generation;
@@ -64,10 +62,6 @@ public class Population {
             individual.addValue(new Command());
         }
         return individual;
-    }
-
-    private int getRandomIndividualSize() {
-        return Utils.getRandomNumberInRange(INDIVIDUAL_MIN_SIZE, INDIVIDUAL_MAX_SIZE);
     }
 
     private List<Individual> cloneIndividuals(List<Individual> individuals) {

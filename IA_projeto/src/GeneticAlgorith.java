@@ -9,14 +9,14 @@ import java.util.List;
 public class GeneticAlgorith {
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
     private final int POPULATION_SIZE = 25;
-    private final int SELECTION_SIZE = 3;
-    private final double MUTATION_RATE = 0.03;
-    private int genCount = 0;
+    private final int SELECTION_SIZE = 2;
+    private final double MUTATION_RATE = 0.04;
+    private int genCount = -1;
 
     private final MarioUtils marioUtils;
 
     public GeneticAlgorith() {
-        marioUtils = new MarioUtils("192.168.1.77");
+        marioUtils = new MarioUtils("192.168.1.78");
     }
 
     public void run() {
@@ -68,17 +68,17 @@ public class GeneticAlgorith {
         population.sortPopulation();
         System.out.println("Gen " + population.getGeneration() + " fittest fitness: "
                 + decimalFormat.format(population.getIndividuals().get(0).getFitness()));
+        genCount++;
         if (genCount == 2) {
-            genCount = 0;
+            genCount = -1;
             Integer[] commandList = commandListToArray(population.getIndividuals().get(0).getGenes());
             RunResult result = marioUtils.goMarioGo(generateServerRequest(commandList, "true"), 8080);
             System.out.println(result);
         }
-        genCount++;
     }
 
     private Request generateServerRequest(Integer[] commandList, String render) {
-        return new Request(commandList, "SuperMarioBros-1-1-v0", render);
+        return new Request(commandList, "SuperMarioBros-3-2-v0", render);
     }
 
     private Integer[] commandListToArray(List<Command> commands) {
@@ -93,7 +93,7 @@ public class GeneticAlgorith {
     public double calculateFitness(RunResult result) {
         double fitness = (double) result.getX_pos() * result.getX_pos() / result.getCommands_used();
 //        return fitness;
-        return (double) result.getX_pos() / 125 + fitness / 10;
+        return (double) result.getX_pos() / 100 + fitness / 10;
 
     }
 }
